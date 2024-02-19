@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="ml-2 font-extrabold">RANDOM JOKE GENRATOR</h1>
+     <div class="cointneer bg-black h-screen w-[100%]  flex items-center justify-center">
+       
+        <form class="form flex flex-col justify-center w-[50%] ">
+            <input type="text" id="inputfield" class=" p-3 h-20 bg-zinc-300 w-[100%]  font-semibold text-[10px] lg:text-2xl ">
+            <button id="btn" class="bg-red-500 h-10 hover:opacity-[0.5] font-bold">genrate</button>
+            
+        </form>
+     </div>
+</body>
+
+<script>
+    let form=document.querySelector(".form")
+    let inputField = document.getElementById("inputfield");
+    let para=document.querySelector(".para")
+
+let fun=async()=>{ 
+    let config={
+        
+                headers: {
+                    Accept: "application/json"
+                },
+    };
+    let url="https://icanhazdadjoke.com/"
+     let response=await fetch(url,config)
+     let data=await response.json()
+     console.log(data)
+     inputField.value=data.joke
+
+}
+fun()
+
+    form.addEventListener("click",(e)=>{
+        e.preventDefault();
+        fun()
+    })
+</script>
+</html>
